@@ -1,5 +1,6 @@
 package com.cabBooking.Entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,7 +26,7 @@ public class BaseEntity {
 	
 	@CreationTimestamp
 	@Column(name="created_on")
-	private LocalDateTime createdOn;
+	private LocalDate createdOn;
 	
 	@UpdateTimestamp
 	@Column(name="updated_on")
