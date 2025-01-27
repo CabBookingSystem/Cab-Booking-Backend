@@ -26,9 +26,6 @@ public class Car  extends BaseEntity{
 	
 	@Column(name = "seats",nullable=false)
 	private int seats;
-	
-	@Column(name = "price")
-	private double price;
 
 	@Lob
 	private byte [] image;
