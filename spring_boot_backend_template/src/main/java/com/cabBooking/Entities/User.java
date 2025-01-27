@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true, exclude = {"userAddress", "password"})
 public class User extends BaseEntity {
 
 	@Column(name = "first_Name", length = 20)

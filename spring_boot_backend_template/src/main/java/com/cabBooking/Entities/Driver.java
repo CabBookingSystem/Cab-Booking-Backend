@@ -3,7 +3,9 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Table(name ="Driver")
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = {"driverAddress", "adharImage", "drivingLicence", "password"})
 public class Driver extends BaseEntity{
 	@Column(name = "first_Name", length = 20)
 	private String firstName;
@@ -43,6 +45,10 @@ public class Driver extends BaseEntity{
 	private byte[] drivingLicence;
 	
 	private boolean status;
+	
+	@OneToOne
+	@JoinColumn(name ="address_id")
+	private Address driverAddress;
 
 	public Driver(String firstName, String lastName, LocalDate dob, int age, String email, String password, int phoneNo,
 			byte[] adharImage, byte[] drivingLicence, boolean status) {
