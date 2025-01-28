@@ -8,6 +8,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,6 +40,21 @@ public class Booking extends BaseEntity {
 	
 	@Column(name="amount",length=50,nullable=false)
 	private double amount;
+	
+	
+	@OneToOne
+	@JoinColumn(name="cust_id")
+	private User user;
+	
+	
+	@OneToOne
+	@JoinColumn(name="driver_id")
+	private Driver driver;
+	
+	@OneToOne
+	@JoinColumn(name="car_id")
+	private Car car;
+	
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length=30)

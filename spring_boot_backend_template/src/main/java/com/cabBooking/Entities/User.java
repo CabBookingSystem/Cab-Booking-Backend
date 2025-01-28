@@ -48,7 +48,7 @@ public class User extends BaseEntity {
 	private UserRole role;
 	
 	@OneToOne
-	@JoinColumn(name= "address_id")
+	@JoinColumn(name= "address_id",unique=false)
 	private Address userAddress;
 
 	public User(String firstName, String lastName, LocalDate dob, String email, String password, int phoneNo,
