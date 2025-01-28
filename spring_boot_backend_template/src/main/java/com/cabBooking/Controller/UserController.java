@@ -12,7 +12,6 @@ import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Entities.User;
 import com.cabBooking.Service.UserService;
 
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -31,7 +30,6 @@ public class UserController {
 		{
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage()));
 		}
-		
 		
 	}
 

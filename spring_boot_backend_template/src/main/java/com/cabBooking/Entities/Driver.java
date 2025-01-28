@@ -50,6 +50,10 @@ public class Driver extends BaseEntity{
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name ="address_id")
 	private Address driverAddress;
+	
+	@OneToOne
+	@JoinColumn(name ="booking_id")
+	private Booking bookingId;
 
 	public Driver(String firstName, String lastName, LocalDate dob, int age, String email, String password, int phoneNo,
 			byte[] adharImage, byte[] drivingLicence, boolean status) {

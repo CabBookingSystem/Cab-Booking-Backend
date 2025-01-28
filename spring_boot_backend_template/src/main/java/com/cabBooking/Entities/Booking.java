@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Entity
 @Table(name="Booking")
 @NoArgsConstructor
@@ -41,11 +40,9 @@ public class Booking extends BaseEntity {
 	@Column(name="amount",length=50,nullable=false)
 	private double amount;
 	
-	
 	@OneToOne
 	@JoinColumn(name="cust_id")
 	private User user;
-	
 	
 	@OneToOne
 	@JoinColumn(name="driver_id")
@@ -55,12 +52,13 @@ public class Booking extends BaseEntity {
 	@JoinColumn(name="car_id")
 	private Car car;
 	
-	
 	@Enumerated(EnumType.STRING)
 	@Column(length=30)
 	private Status status=Status.PENDING;
 	
-	
+	@OneToOne
+	@JoinColumn(name = "driver_id")
+	private Driver driverId;
 	
 	//argConstructor
 	public Booking(String source, String destination, LocalDate date, LocalTime time, double amount, Status status) {
