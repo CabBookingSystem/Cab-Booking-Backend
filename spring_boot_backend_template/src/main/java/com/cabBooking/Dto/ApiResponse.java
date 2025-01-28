@@ -1,4 +1,4 @@
-package com.sunbeam.Dto;
+package com.cabBooking.Dto;
 
 import java.time.LocalDateTime;
 

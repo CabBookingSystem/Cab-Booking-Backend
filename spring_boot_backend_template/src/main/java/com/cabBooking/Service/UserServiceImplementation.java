@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cabBooking.Daos.UserDao;
+import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Entities.User;
-import com.sunbeam.Dto.ApiResponse;
 
 import jakarta.transaction.Transactional;
 
