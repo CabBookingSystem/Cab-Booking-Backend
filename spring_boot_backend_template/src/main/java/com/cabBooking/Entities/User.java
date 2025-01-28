@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -45,7 +46,7 @@ public class User extends BaseEntity {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30) 
-	private UserRole role;
+	private UserRole role = UserRole.CUSTOMER;
 	
 	@OneToOne
 	@JoinColumn(name= "address_id",unique=false)
