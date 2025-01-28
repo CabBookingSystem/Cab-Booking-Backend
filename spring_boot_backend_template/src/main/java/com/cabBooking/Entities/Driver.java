@@ -1,6 +1,7 @@
 package com.cabBooking.Entities;
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -46,7 +47,7 @@ public class Driver extends BaseEntity{
 	
 	private boolean status;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name ="address_id")
 	private Address driverAddress;
 

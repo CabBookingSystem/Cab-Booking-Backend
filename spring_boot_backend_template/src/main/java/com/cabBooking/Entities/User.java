@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -48,7 +49,7 @@ public class User extends BaseEntity {
 	@Column(length = 30) 
 	private UserRole role = UserRole.CUSTOMER;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name= "address_id",unique=false)
 	private Address userAddress;
 
