@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.SignInDto;
+import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Entities.User;
 import com.cabBooking.Service.UserService;
 
@@ -32,5 +34,14 @@ public class UserController {
 		}
 		
 	}
+	// @PostMapping(value = "/signin", consumes = "application/json", produces = "application/json")
+	@PostMapping("/signin")
+	public ResponseEntity<?> userSignIn(@RequestBody SignInDto dto ){
+		System.out.println("In sign In dto "+dto);
+		
+		return ResponseEntity.ok(userService.signIn(dto));
+	}
+	
+	
 
 }
