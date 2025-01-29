@@ -41,7 +41,7 @@ public class User extends BaseEntity {
 	private String password;
 	
 	@Column(name = "phone_No",length = 10, nullable = false, unique = true)
-	private int phoneNo; 
+	private Long phoneNo; 
 	
 	private boolean status;
 	

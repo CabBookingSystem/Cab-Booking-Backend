@@ -2,6 +2,7 @@ package com.cabBooking.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -14,6 +15,7 @@ import com.cabBooking.Daos.UserDao;
 import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Dto.UserRespDto;
+import com.cabBooking.Entities.Car;
 import com.cabBooking.Entities.User;
 import com.cabBooking.Entities.UserRole;
 import com.cabBooking.customexception.AuthenticationException;
@@ -22,10 +24,12 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class UserServiceImplementation implements UserService {
+public  class UserServiceImplementation implements UserService {
 
 	@Autowired
 	private UserDao userDao;
+	
+	
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -64,6 +68,27 @@ public class UserServiceImplementation implements UserService {
 		}
 		return userDto;
 		//return userDao.findAll().stream().map(user->modelMapper.map(user, UserRespDto.class)).collect(Collectors.toList());
+	}
+
+
+	@Override
+	public ApiResponse deleteUser(Long id) {
+	Optional<User> user=userDao.findById(id);
+	if(user.isPresent()) {
+		User userr=user.get();
+		userr.setStatus(false);
+		userDao.save(userr);
+		 return new ApiResponse("User  deleted successfully");
+	}else {
+		 return new ApiResponse("User not found");
+	}
+	}
+
+
+	@Override
+	public List<User> getByRole(UserRole userRole) {
+		
+		return userDao.findByRole(userRole);
 	}
 	
 	
