@@ -1,12 +1,11 @@
 package com.cabBooking.Service;
 
-<<<<<<< HEAD
-=======
 
-
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
->>>>>>> cc30d5d7e91f466aff36009485459be0369a997f
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -16,6 +15,7 @@ import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.User;
+import com.cabBooking.Entities.UserRole;
 import com.cabBooking.customexception.AuthenticationException;
 
 import jakarta.transaction.Transactional;
@@ -36,8 +36,7 @@ public class UserServiceImplementation implements UserService {
 		User user2=userDao.save(user);
 		return new ApiResponse("user Registerd");
 	}
-<<<<<<< HEAD
-=======
+
 
 	@Override
 	public UserRespDto signIn(SignInDto dto) {
@@ -46,9 +45,29 @@ public class UserServiceImplementation implements UserService {
 				.orElseThrow(()->new AuthenticationException("Invalid email or password"));
 		return modelMapper.map(userEntity,UserRespDto.class);
 	}
+
+
+	@Override
+	public List<UserRespDto> GetAllUsers() {
+		// TODO Auto-generated method stub
+		List<UserRespDto> userDto = null;
+		UserRespDto user1;
+		List<User>users=userDao.findAll();
+		for (User u : users)
+		{
+			if(u.getRole()==UserRole.CUSTOMER)
+			{
+				user1=modelMapper.map(u, UserRespDto.class);
+				userDto.add(user1);
+				//userDto.add(modelMapper.map(u, UserRespDto.class));
+			}
+		}
+		return userDto;
+		//return userDao.findAll().stream().map(user->modelMapper.map(user, UserRespDto.class)).collect(Collectors.toList());
+	}
 	
 	
 	
 
->>>>>>> cc30d5d7e91f466aff36009485459be0369a997f
+
 }

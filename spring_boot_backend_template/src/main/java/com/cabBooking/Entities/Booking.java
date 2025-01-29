@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -40,6 +42,7 @@ public class Booking extends BaseEntity {
 	@Column(name="amount",length=50,nullable=false)
 	private double amount;
 	
+
 	@OneToOne
 	@JoinColumn(name="cust_id")
 	private User user;
@@ -56,10 +59,7 @@ public class Booking extends BaseEntity {
 	@Column(length=30)
 	private Status status=Status.PENDING;
 	
-	@OneToOne
-	@JoinColumn(name = "driver_id")
-	private Driver driverId;
-	
+
 	//argConstructor
 	public Booking(String source, String destination, LocalDate date, LocalTime time, double amount, Status status) {
 		super();
