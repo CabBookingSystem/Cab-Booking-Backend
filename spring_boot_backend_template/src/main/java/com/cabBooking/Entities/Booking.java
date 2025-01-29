@@ -56,10 +56,6 @@ public class Booking extends BaseEntity {
 	@Column(length=30)
 	private Status status=Status.PENDING;
 	
-	@OneToOne
-	@JoinColumn(name = "driver_id")
-	private Driver driverId;
-	
 	//argConstructor
 	public Booking(String source, String destination, LocalDate date, LocalTime time, double amount, Status status) {
 		super();
