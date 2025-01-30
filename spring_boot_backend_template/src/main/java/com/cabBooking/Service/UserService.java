@@ -3,6 +3,7 @@ package com.cabBooking.Service;
 import java.util.List;
 
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.PasswordDto;
 import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.User;
@@ -19,6 +20,8 @@ public interface UserService {
 	ApiResponse deleteUser(Long id);
 
 	List<User> getByRole(UserRole userRole);
+
+	ApiResponse changeUserpass(PasswordDto passDto);
 
 	
 }

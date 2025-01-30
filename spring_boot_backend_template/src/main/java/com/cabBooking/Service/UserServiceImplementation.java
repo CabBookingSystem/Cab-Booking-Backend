@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.cabBooking.Daos.UserDao;
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.PasswordDto;
 import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.Car;
@@ -89,6 +90,25 @@ public  class UserServiceImplementation implements UserService {
 	public List<User> getByRole(UserRole userRole) {
 		
 		return userDao.findByRole(userRole);
+	}
+
+
+	@Override
+	public ApiResponse changeUserpass(PasswordDto passDto) {
+		User userEntity=userDao.findByIdAndPassword(passDto.getId(), passDto.getPassword())
+				.orElseThrow(()->new AuthenticationException("Invalid Password"));
+		
+		if(passDto.getNewPassword()==passDto.getConpassword()) {
+			
+		userEntity.setPassword(passDto.getNewPassword());
+	    userDao.save(userEntity);
+	    return new ApiResponse("Password Changed Successfully");
+	    }else {
+	    	
+	    	return new ApiResponse("New Password and Confirm Password shoud match");
+	    }
+		
+		
 	}
 	
 	

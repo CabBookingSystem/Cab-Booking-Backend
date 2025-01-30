@@ -10,5 +10,7 @@ import com.cabBooking.Entities.Category;
 public interface CarDao extends JpaRepository<Car,Long>{
 
 	List<Car> findByCategory(Category carCategory);
+	
+	List<Car> findByStatus(Boolean status);
 
 }
