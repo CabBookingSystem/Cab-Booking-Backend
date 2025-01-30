@@ -15,8 +15,6 @@ import lombok.ToString;
 @Getter
 @ToString(callSuper=true)
 public class Locations extends BaseEntity {
-
-	
 	@Column(name="location",length=50)
 	private String location;
 

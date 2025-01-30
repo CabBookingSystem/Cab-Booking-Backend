@@ -1,6 +1,4 @@
 package com.cabBooking.Service;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +10,15 @@ import com.cabBooking.Entities.Locations;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import com.cabBooking.Daos.AdminDao;
 import com.cabBooking.Daos.CarDao;
 import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.CarRespDto;
+import com.cabBooking.Dto.DriverDto;
 import com.cabBooking.Entities.Car;
 import com.cabBooking.Entities.Category;
+import com.cabBooking.Entities.Driver;
 import com.cabBooking.Entities.User;
 
 
@@ -28,8 +27,6 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class AdminServiceImplementation implements AdminService {
-
-
 	
 	@Autowired
 	private LocationDao locationDao;
@@ -39,6 +36,17 @@ public class AdminServiceImplementation implements AdminService {
 	
 	@Autowired
 	private ModelMapper modelmapper;
+	
+	@Autowired
+	private AdminDao adminDao;
+	
+	@Override
+	public ApiResponse addDriver(DriverDto driverDto) {
+		Driver driverEntity = modelmapper.map(driverDto, Driver.class);
+		adminDao.save(driverEntity);
+		return  new ApiResponse ("Driver Added ");
+		
+	}
 	
 	@Override
 	public ApiResponse addCar(Car car) {
@@ -66,11 +74,9 @@ public class AdminServiceImplementation implements AdminService {
 		}
 	}
 
-	
-
 	@Override
 	public ApiResponse addLocations(Locations location) {
-		// TODO Auto-generated method stub
+	
 		locationDao.save(location);
 		
 		return new ApiResponse("Location Added!!");
@@ -81,5 +87,4 @@ public class AdminServiceImplementation implements AdminService {
 		
 		return carDao.findByCategory(carCategory);
 	}
-
 }

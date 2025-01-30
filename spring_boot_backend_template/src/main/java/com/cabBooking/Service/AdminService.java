@@ -1,21 +1,30 @@
-	package com.cabBooking.Service;
+package com.cabBooking.Service;
 
 import java.util.List;
-
 import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.CarRespDto;
+import com.cabBooking.Dto.DriverDto;
 import com.cabBooking.Entities.Car;
 import com.cabBooking.Entities.Category;
 import com.cabBooking.Entities.Locations;
+import com.cabBooking.Entities.Driver;
 
 public interface AdminService {
 
 		ApiResponse addLocations(Locations location);
-		 ApiResponse addCar(Car car);
-			CarRespDto getCarDetails(Long catId);
-//			ApiResponse updateCategory(Long carId, Car category);
-			ApiResponse deleteCar(Long carId);
+		
+		ApiResponse addCar(Car car);
+		
+		CarRespDto getCarDetails(Long catId);
+		
+//		ApiResponse updateCategory(Long carId, Car category);
+		
+		ApiResponse deleteCar(Long carId);
 			
-			List<Car> getByCategory(Category carCategory);
+		List<Car> getByCategory(Category carCategory);
+
+		ApiResponse addDriver(DriverDto driverDto);
 	
-	}
+}
+
+	

@@ -1,8 +1,6 @@
 package com.cabBooking.Service;
 
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 
@@ -40,7 +38,6 @@ public class UserServiceImplementation implements UserService {
 
 	@Override
 	public UserRespDto signIn(SignInDto dto) {
-		
 		User userEntity = userDao.findByEmailAndPassword(dto.getEmail(),dto.getPassword())
 				.orElseThrow(()->new AuthenticationException("Invalid email or password"));
 		return modelMapper.map(userEntity,UserRespDto.class);
@@ -65,9 +62,4 @@ public class UserServiceImplementation implements UserService {
 		return userDto;
 		//return userDao.findAll().stream().map(user->modelMapper.map(user, UserRespDto.class)).collect(Collectors.toList());
 	}
-	
-	
-	
-
-
 }

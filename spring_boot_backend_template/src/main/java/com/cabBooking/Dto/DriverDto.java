@@ -1,5 +1,30 @@
 package com.cabBooking.Dto;
 
-public class DriverDto {
+import java.time.LocalDate;
 
+import com.cabBooking.Entities.Address;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class DriverDto {
+	private String firstName;
+	
+	private String lastName;
+	
+	private LocalDate dob;
+	
+	private int age;
+	
+	private String password;
+	
+	private int phoneNo; 
+	
+	private byte[] adharImage;
+	
+	private byte[] drivingLicence; 
+	
+	private String address;
 }

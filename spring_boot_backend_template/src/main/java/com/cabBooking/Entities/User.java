@@ -65,7 +65,4 @@ public class User extends BaseEntity {
 		this.status = status;
 		this.role = role;
 	}
-	
-	
-	
 }

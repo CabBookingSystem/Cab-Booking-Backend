@@ -1,9 +1,7 @@
 package com.cabBooking.Entities;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -58,7 +56,6 @@ public class Booking extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(length=30)
 	private Status status=Status.PENDING;
-	
 
 	//argConstructor
 	public Booking(String source, String destination, LocalDate date, LocalTime time, double amount, Status status) {
@@ -70,11 +67,4 @@ public class Booking extends BaseEntity {
 		this.amount = amount;
 		this.status = status;
 	}
-
-
-
-	
-	
-	
-
 }

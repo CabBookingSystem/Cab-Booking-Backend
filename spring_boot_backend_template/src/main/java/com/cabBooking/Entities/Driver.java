@@ -1,9 +1,10 @@
 package com.cabBooking.Entities;
 import java.time.LocalDate;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
@@ -47,16 +48,18 @@ public class Driver extends BaseEntity{
 	
 	private boolean status;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name ="address_id")
-	private Address driverAddress;
+	private String address;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(length = 30) 
+	private UserRole role = UserRole.DRIVER;
 	
 	@OneToOne
 	@JoinColumn(name ="booking_id")
 	private Booking bookingId;
 
 	public Driver(String firstName, String lastName, LocalDate dob, int age, String email, String password, int phoneNo,
-			byte[] adharImage, byte[] drivingLicence, boolean status) {
+			byte[] adharImage, byte[] drivingLicence, boolean status, String address) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -68,5 +71,6 @@ public class Driver extends BaseEntity{
 		this.adharImage = adharImage;
 		this.drivingLicence = drivingLicence;
 		this.status = status;
+		this.address = address;
 	}
 }
