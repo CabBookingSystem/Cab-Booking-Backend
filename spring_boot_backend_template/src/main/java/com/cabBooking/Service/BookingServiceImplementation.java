@@ -67,7 +67,7 @@ public class BookingServiceImplementation implements BookingService {
 			//check Source and Destination are not equal
 			if(source.equalsIgnoreCase(destination))
 			{
-				return new ApiResponse("sourse and Destination Cannot be same!!!");
+				return new ApiResponse("source and Destination Cannot be same!!!");
 			}
 			
 			

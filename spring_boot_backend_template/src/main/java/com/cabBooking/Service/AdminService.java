@@ -24,6 +24,9 @@ public interface AdminService {
 		List<Car>getByCategory(Category carCategory);
 
 		ApiResponse addDriver(DriverDto driverDto);
+
+
+		List<Car> findAvailableVehicals();
+
 		
-		List<Car> findCarByStatus(Boolean status);
 }

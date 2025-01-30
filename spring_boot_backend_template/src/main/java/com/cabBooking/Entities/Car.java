@@ -27,7 +27,7 @@ public class Car  extends BaseEntity{
 	private boolean status;
 	
 	@Column(name = "seats",nullable=false)
-	private int seats;
+	private int seats=5;
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30) 

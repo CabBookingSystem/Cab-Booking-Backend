@@ -81,9 +81,9 @@ public class AdminController {
 	    
 	}
 	
-	@GetMapping("getStatus/{carStatus}")
-	public ResponseEntity<?> getCarByStatus(@PathVariable Boolean carStatus){
-		List<Car> cars=adminService.findCarByStatus(carStatus);
+	@GetMapping("/availablecars")
+	public ResponseEntity<?> findAvailableVehicals(){
+		List<Car> cars=adminService.findAvailableVehicals();
 		return ResponseEntity.ok(cars);
 	}
 	

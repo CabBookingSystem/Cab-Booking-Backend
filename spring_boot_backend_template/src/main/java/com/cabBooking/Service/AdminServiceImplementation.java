@@ -42,11 +42,14 @@ public class AdminServiceImplementation implements AdminService {
 	
 	@Override
 	public ApiResponse addDriver(DriverDto driverDto) {
+		
+		
 		Driver driverEntity = modelmapper.map(driverDto, Driver.class);
 		
 		Category cat = driverDto.getCategory();
 		
 		List<Car> cars = carDao.findByCategoryAndStatus(cat, true);
+		
 		for(Car c : cars) {
 			driverEntity.setCarId(c);
 			c.setStatus(false);
@@ -98,8 +101,8 @@ public class AdminServiceImplementation implements AdminService {
 	}
 
 	@Override
-	public List<Car> findCarByStatus(Boolean status) {
+	public List<Car> findAvailableVehicals() {
 		
-		return carDao.findByStatus(status);
+		return carDao.findByStatus(true);
 	}
 }
