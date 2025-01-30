@@ -82,4 +82,12 @@ public class AdminServiceImplementation implements AdminService {
 		return carDao.findByCategory(carCategory);
 	}
 
+	@Override
+	public List<Car> findCarByStatus(Boolean status) {
+		
+		return carDao.findByStatus(status);
+	}
+
+	
+
 }

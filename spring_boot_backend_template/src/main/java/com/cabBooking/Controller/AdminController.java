@@ -91,6 +91,12 @@ public class AdminController {
 	    
 	}
 	
+	@GetMapping("getStatus/{carStatus}")
+	public ResponseEntity<?> getCarByStatus(@PathVariable Boolean carStatus){
+		List<Car> cars=adminService.findCarByStatus(carStatus);
+		return ResponseEntity.ok(cars);
+	}
+	
 	@PostMapping("/add-locations")
 	public ResponseEntity<?> addLocations(Locations location)
 	{
@@ -108,6 +114,7 @@ public class AdminController {
 	@GetMapping("/Customers")
 	public ResponseEntity<?> DisplayCustomers()
 	{
+		
 		List<UserRespDto> users=userService.GetAllUsers();
 		if(users.isEmpty())
 		{

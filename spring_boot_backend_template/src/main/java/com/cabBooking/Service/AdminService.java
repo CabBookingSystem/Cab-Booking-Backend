@@ -17,5 +17,6 @@ public interface AdminService {
 			ApiResponse deleteCar(Long carId);
 			
 			List<Car> getByCategory(Category carCategory);
+			List<Car> findCarByStatus(Boolean status);
 	
 	}

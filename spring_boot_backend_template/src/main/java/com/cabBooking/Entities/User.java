@@ -41,7 +41,7 @@ public class User extends BaseEntity {
 	private String password;
 	
 	@Column(name = "phone_No",length = 10, nullable = false, unique = true)
-	private int phoneNo; 
+	private Long phoneNo; 
 	
 	private boolean status;
 	
@@ -53,7 +53,7 @@ public class User extends BaseEntity {
 	@JoinColumn(name= "address_id",unique=false)
 	private Address userAddress;
 
-	public User(String firstName, String lastName, LocalDate dob, String email, String password, int phoneNo,
+	public User(String firstName, String lastName, LocalDate dob, String email, String password, Long phoneNo,
 			boolean status, UserRole role) {
 		super();
 		this.firstName = firstName;
