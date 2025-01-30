@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.BookingRespDto;
 import com.cabBooking.Dto.CarRespDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.Car;
 import com.cabBooking.Entities.Category;
 import com.cabBooking.Entities.Locations;
+import com.cabBooking.Entities.User;
+import com.cabBooking.Service.BookingService;
 import com.cabBooking.Service.UserService;
 
 @RestController
@@ -30,6 +33,9 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private BookingService bookingService;
 
 	@PostMapping("/car")
 	public ResponseEntity<?> addCar(@RequestBody Car car)
@@ -75,6 +81,12 @@ public class AdminController {
 	    
 	}
 	
+	@GetMapping("getStatus/{carStatus}")
+	public ResponseEntity<?> getCarByStatus(@PathVariable Boolean carStatus){
+		List<Car> cars=adminService.findCarByStatus(carStatus);
+		return ResponseEntity.ok(cars);
+	}
+	
 	@PostMapping("/add-locations")
 	public ResponseEntity<?> addLocations(Locations location)
 	{
@@ -91,6 +103,7 @@ public class AdminController {
 	@GetMapping("/Customers")
 	public ResponseEntity<?> DisplayCustomers()
 	{
+		
 		List<UserRespDto> users=userService.GetAllUsers();
 		if(users.isEmpty())
 		{
@@ -98,6 +111,18 @@ public class AdminController {
 		}
 		return ResponseEntity.ok(users);
 	}
+	
+	@GetMapping("/bookings")
+	public ResponseEntity<?> DisplayBookings()
+	{
+		List<BookingRespDto> bookings=bookingService.GetAllBookings();
+		if(bookings.isEmpty())
+		{
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		return ResponseEntity.ok(bookings);
+	}
+
 	
 	@PostMapping("/add-driver")
 	public ResponseEntity<?> addDrivers(@RequestBody DriverDto driverDto) {

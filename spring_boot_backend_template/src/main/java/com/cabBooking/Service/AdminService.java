@@ -20,11 +20,10 @@ public interface AdminService {
 //		ApiResponse updateCategory(Long carId, Car category);
 		
 		ApiResponse deleteCar(Long carId);
-			
-		List<Car> getByCategory(Category carCategory);
+		
+		List<Car>getByCategory(Category carCategory);
 
 		ApiResponse addDriver(DriverDto driverDto);
-	
+		
+		List<Car> findCarByStatus(Boolean status);
 }
-
-	

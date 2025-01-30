@@ -50,6 +50,14 @@ public class Driver extends BaseEntity{
 	
 	private String address;
 	
+	@OneToOne
+	@JoinColumn(name = "car_id")
+	private Car carId;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(length = 30) 
+	private Category category;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30) 
 	private UserRole role = UserRole.DRIVER;
