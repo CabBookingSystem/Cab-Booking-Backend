@@ -42,6 +42,10 @@ public class Booking extends BaseEntity {
 	@Column(name="amount",length=50,nullable=false)
 	private double amount;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(name="category")
+	private Category category;
+	
 
 	@OneToOne
 	@JoinColumn(name="cust_id")

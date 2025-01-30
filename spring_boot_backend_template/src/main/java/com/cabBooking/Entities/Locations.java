@@ -17,13 +17,19 @@ import lombok.ToString;
 public class Locations extends BaseEntity {
 
 	
-	@Column(name="location",length=50)
-	private String location;
+	@Column(name="source",length=50)
+	private String source;
+	
+	@Column(name="destination",length=50)
+	private String destination;
 
-	public Locations(String location) {
+	public Locations(String source, String destination) {
 		super();
-		this.location = location;
+		this.source = source;
+		this.destination = destination;
 	}
+
+	
 	
 	
 

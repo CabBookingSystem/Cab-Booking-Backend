@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.BookingRespDto;
 import com.cabBooking.Dto.CarRespDto;
 import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Dto.UserRespDto;
@@ -23,7 +24,7 @@ import com.cabBooking.Entities.Category;
 import com.cabBooking.Entities.Locations;
 import com.cabBooking.Entities.User;
 import com.cabBooking.Service.AdminService;
-
+import com.cabBooking.Service.BookingService;
 import com.cabBooking.Service.UserService;
 
 
@@ -38,6 +39,9 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private BookingService bookingService;
 
 	
 	@PostMapping("/car")
@@ -111,6 +115,18 @@ public class AdminController {
 		}
 		return ResponseEntity.ok(users);
 		
+	}
+	
+	
+	@GetMapping("/bookings")
+	public ResponseEntity<?> DisplayBookings()
+	{
+		List<BookingRespDto> bookings=bookingService.GetAllBookings();
+		if(bookings.isEmpty())
+		{
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		return ResponseEntity.ok(bookings);
 	}
 
 	

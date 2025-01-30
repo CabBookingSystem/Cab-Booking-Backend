@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.cabBooking.Daos.UserDao;
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.BookingDto;
 import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.User;
@@ -65,6 +66,10 @@ public class UserServiceImplementation implements UserService {
 		return userDto;
 		//return userDao.findAll().stream().map(user->modelMapper.map(user, UserRespDto.class)).collect(Collectors.toList());
 	}
+
+
+	
+	
 	
 	
 	

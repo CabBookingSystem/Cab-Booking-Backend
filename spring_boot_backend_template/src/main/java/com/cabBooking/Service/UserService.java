@@ -3,6 +3,7 @@ package com.cabBooking.Service;
 import java.util.List;
 
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.BookingDto;
 import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.User;
@@ -14,6 +15,8 @@ public interface UserService {
 	UserRespDto signIn(SignInDto signin);
 
 	List<UserRespDto> GetAllUsers();
+
+	
 
 	
 }
