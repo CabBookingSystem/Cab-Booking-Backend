@@ -10,8 +10,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ApiResponse {
+	
+	 private String status;
 	private String message;
 	private LocalDateTime timeStamp;
+	
+	  public ApiResponse(String status, String message) {
+	        this.status = status;
+	        this.message = message;
+	    }
 	public ApiResponse(String message) {
 		super();
 		this.message = message;
