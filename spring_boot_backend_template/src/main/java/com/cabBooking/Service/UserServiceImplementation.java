@@ -1,6 +1,8 @@
 package com.cabBooking.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
@@ -44,19 +46,27 @@ public  class UserServiceImplementation implements UserService {
 
 
 	@Override
-	public ApiResponse signIn(SignInDto dto) {
+	public  Object signIn(SignInDto dto) {
 
-		
+		Map<String, Object> response=new HashMap<>();
 		User user= userDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 	    if (user!=null) {
-	        return new ApiResponse("success","User Login Successful");
+	       // return new ApiResponse("success","User Login Successful");
+	    	return user;
+	    	
+	         //return response;
 	    }
 
 	    // If not a user, try to authenticate as a driver
 	    Optional<Driver> driverOptional = driverDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 	    if (driverOptional.isPresent()) {
 	    	
-	        return new ApiResponse("success","Driver Login Successful");
+	       // return new ApiResponse("success","Driver Login Successful");
+	    	return driverOptional;
+//	    	 response.put("status", "success");
+//	         response.put("message", "Driver Login Successful");
+//	         response.put("driver", driverOptional.get()); // Use .get() to extract the object
+//	         return response;
 	    }
 
 	    

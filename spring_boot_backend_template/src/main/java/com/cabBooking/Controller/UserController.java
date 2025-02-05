@@ -45,6 +45,9 @@ public class UserController {
 		}
 		
 	}
+	
+	
+	
 	// @PostMapping(value = "/signin", consumes = "application/json", produces = "application/json")
 	@PostMapping("/signin")
 	public ResponseEntity<?> userSignIn(@RequestBody SignInDto dto ){
@@ -53,6 +56,9 @@ public class UserController {
 		return ResponseEntity.ok(userService.signIn(dto));
 		//return ResponseEntity.status(HttpStatus.FOUND).body(userService.signIn(dto));
 	}
+	
+	
+	
 	
 	@PutMapping("{userId}")
 	public ResponseEntity<?> changePassword(@RequestBody PasswordDto passDto){
