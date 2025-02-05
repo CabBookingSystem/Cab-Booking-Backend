@@ -2,6 +2,7 @@ package com.cabBooking.Service;
 
 import java.util.List;
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.CarReqDto;
 import com.cabBooking.Dto.CarRespDto;
 import com.cabBooking.Dto.DriverDto;
 import com.cabBooking.Entities.Car;
@@ -12,8 +13,9 @@ import com.cabBooking.Entities.Driver;
 public interface AdminService {
 
 		ApiResponse addLocations(Locations location);
+
 		
-		ApiResponse addCar(Car car);
+		ApiResponse addCar(CarReqDto car);
 		
 		CarRespDto getCarDetails(Long catId);
 		
@@ -28,5 +30,9 @@ public interface AdminService {
 
 		List<Car> findAvailableVehicals();
 
+
+		List<Car> findCarByStatus(Boolean status);
+
 		
 }
+

@@ -49,14 +49,14 @@ public  class UserServiceImplementation implements UserService {
 		
 		User user= userDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 	    if (user!=null) {
-	        return new ApiResponse("User Login Successful");
+	        return new ApiResponse("success","User Login Successful");
 	    }
 
 	    // If not a user, try to authenticate as a driver
 	    Optional<Driver> driverOptional = driverDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 	    if (driverOptional.isPresent()) {
 	    	
-	        return new ApiResponse("Driver Login Successful");
+	        return new ApiResponse("success","Driver Login Successful");
 	    }
 
 	    
