@@ -29,7 +29,10 @@ import com.cabBooking.Service.UserService;
 
 @RestController
 @RequestMapping("/Admin")
-@CrossOrigin( origins = "http://localhost:3000")
+
+
+@CrossOrigin(origins="http://localhost:3000")
+
 public class AdminController {
 	@Autowired
 	private AdminService  adminService;

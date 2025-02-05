@@ -3,6 +3,7 @@ package com.cabBooking.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,11 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.BookingDto;
-import com.cabBooking.Entities.Booking;
-import com.cabBooking.Entities.Car;
 import com.cabBooking.Service.BookingService;
 import com.cabBooking.Service.UserService;
 
+//import com.cabBooking.Dto.ApiResponse;
+//import com.cabBooking.Dto.BookingDto;
+//import com.cabBooking.Entities.Booking;
+//import com.cabBooking.Entities.Car;
+//import com.cabBooking.Service.BookingService;
+//import com.cabBooking.Service.UserService;
+
+
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
