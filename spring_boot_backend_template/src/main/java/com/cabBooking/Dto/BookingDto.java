@@ -23,23 +23,24 @@ public class BookingDto {
 	
 	
 	
-	
+	private Long userId;
 	private String source;
 	
 	
 	private String Destination;
 	
+	@JsonDeserialize(using = CustomLocalTimeDeserializer.class) 
+	private LocalTime time;
 	
 	private LocalDate Date;
 	
-	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")// Enforces only HH:mm format
-	private LocalTime time;
-	
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm a")// Enforces only HH:mm format
+	 
 	
 	@Enumerated(EnumType.STRING)
 	private Category category;
 	
-	private Long userId;
+	
 
 	public BookingDto(String source, String destination, LocalDate date, LocalTime time, int hour,int minute,Category category,
 			Long userId) {

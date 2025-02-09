@@ -21,6 +21,11 @@ public class Locations extends BaseEntity {
 	
 	@Column(name="destination",length=50)
 	private String destination;
+	
+	
+	@Column(name="distance")
+	private double distance;
+	
 	public Locations(String source, String destination) {
 		super();
 		this.source = source;

@@ -15,8 +15,12 @@ import com.cabBooking.Service.DriverService;
 
 @RestController
 @RequestMapping("/Driver")
+<<<<<<< HEAD
 @CrossOrigin(origins="http://localhost:3000")
 
+=======
+@CrossOrigin( origins = "http://localhost:3000")
+>>>>>>> f5438305f3914aa7495e152c12fc26a6d39cfd2c
 public class DriverController {
 
 	@Autowired 
@@ -24,12 +28,12 @@ public class DriverController {
 	
 	@GetMapping("/{driverId}")
 	public ResponseEntity<?> getReqByType(@PathVariable Long driverId){
-		return ResponseEntity.status(HttpStatus.FOUND).body(driverService.GetCarType(driverId));
+		return ResponseEntity.status(HttpStatus.OK).body(driverService.GetCarType(driverId));
 	}
 	
 	@PutMapping("/{driverId}/{bookingId}")
 	public ResponseEntity<?> acceptUserReq(@PathVariable Long bookingId,@PathVariable Long driverId){
-		return ResponseEntity.status(HttpStatus.FOUND).body(driverService.acceptUserRequest(bookingId,driverId));
+		return ResponseEntity.status(HttpStatus.OK).body(driverService.acceptUserRequest(bookingId,driverId));
 	}
 	
 }

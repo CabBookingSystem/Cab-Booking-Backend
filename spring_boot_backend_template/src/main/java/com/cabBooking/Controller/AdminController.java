@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.BookingRespDto;
+import com.cabBooking.Dto.CarReqDto;
 import com.cabBooking.Dto.CarRespDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.Car;
@@ -29,8 +30,12 @@ import com.cabBooking.Service.UserService;
 
 @RestController
 @RequestMapping("/Admin")
+<<<<<<< HEAD
 @CrossOrigin(origins="http://localhost:3000")
 
+=======
+@CrossOrigin( origins = "http://localhost:3000")
+>>>>>>> f5438305f3914aa7495e152c12fc26a6d39cfd2c
 public class AdminController {
 	@Autowired
 	private AdminService  adminService;
@@ -41,8 +46,10 @@ public class AdminController {
 	@Autowired
 	private BookingService bookingService;
 
-	@PostMapping("/car")
-	public ResponseEntity<?> addCar(@RequestBody Car car)
+
+	
+	@PostMapping("/addcar")
+	public ResponseEntity<?> addCar(@RequestBody CarReqDto car)
 	{
 		try 
 		{

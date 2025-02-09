@@ -24,7 +24,7 @@ public class Car  extends BaseEntity{
 	private String carNo;
 	
 	@Column(name = "status")
-	private boolean status;
+	private boolean status=true;
 	
 	@Column(name = "seats",nullable=false)
 	private int seats=5;

@@ -25,9 +25,14 @@ import com.cabBooking.Entities.UserRole;
 import com.cabBooking.Service.UserService;
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("/users")
 @CrossOrigin(origins="http://localhost:3000")
 
+=======
+@RequestMapping("/user")
+@CrossOrigin( origins = "http://localhost:3000")
+>>>>>>> f5438305f3914aa7495e152c12fc26a6d39cfd2c
 public class UserController {
 	
 	@Autowired
@@ -46,6 +51,9 @@ public class UserController {
 		}
 		
 	}
+	
+	
+	
 	// @PostMapping(value = "/signin", consumes = "application/json", produces = "application/json")
 	@PostMapping("/signin")
 	public ResponseEntity<?> userSignIn(@RequestBody SignInDto dto ){
@@ -54,6 +62,9 @@ public class UserController {
 		return ResponseEntity.ok(userService.signIn(dto));
 		//return ResponseEntity.status(HttpStatus.FOUND).body(userService.signIn(dto));
 	}
+	
+	
+	
 	
 	@PutMapping("{userId}")
 	public ResponseEntity<?> changePassword(@RequestBody PasswordDto passDto){

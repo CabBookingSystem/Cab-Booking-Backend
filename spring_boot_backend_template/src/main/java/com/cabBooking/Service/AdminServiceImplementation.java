@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.cabBooking.Daos.LocationDao;
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.CarReqDto;
 import com.cabBooking.Entities.Locations;
 
 import java.util.List;
@@ -61,9 +62,10 @@ public class AdminServiceImplementation implements AdminService {
 	}
 	
 	@Override
-	public ApiResponse addCar(Car car) {
-		Car cars=carDao.save(car);
-		return new ApiResponse("car Added");
+	public ApiResponse addCar(CarReqDto carDto) {
+		Car carEntity=modelmapper.map(carDto, Car.class);
+		carDao.save(carEntity);
+		return new ApiResponse("success","car Added");
 		
 	}
 
@@ -104,5 +106,13 @@ public class AdminServiceImplementation implements AdminService {
 	public List<Car> findAvailableVehicals() {
 		
 		return carDao.findByStatus(true);
+	}
+
+	
+
+	@Override
+	public List<Car> findCarByStatus(Boolean status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

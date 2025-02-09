@@ -60,6 +60,8 @@ public class Booking extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(length=30)
 	private Status status=Status.PENDING;
+	
+	
 
 	//argConstructor
 	public Booking(String source, String destination, LocalDate date, LocalTime time, double amount, Status status) {

@@ -48,6 +48,8 @@ public class DriverServiceImplementation implements DriverService{
 		List<BookingRespDto>bookingResp=new ArrayList<>();
 		for(Booking b:bookings)
 		{
+			if(b.getStatus()==Status.PENDING)
+			{
 			BookingRespDto bookingDto=modelMapper.map(b, BookingRespDto.class);
 			if(b.getUser()!=null)
 			{
@@ -56,6 +58,7 @@ public class DriverServiceImplementation implements DriverService{
 			bookingDto.setLastName(user.getLastName());
 			}
 			bookingResp.add(bookingDto);
+			}
 		}
 	
 		

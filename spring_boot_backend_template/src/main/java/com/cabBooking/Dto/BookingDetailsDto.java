@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BookingDetaisDto {
+public class BookingDetailsDto {
 private String source;
 	
     private Long id;
