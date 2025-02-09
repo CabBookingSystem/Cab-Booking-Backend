@@ -3,7 +3,9 @@ package com.cabBooking.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +21,7 @@ import com.cabBooking.Service.UserService;
 
 @RestController
 @RequestMapping("/customer")
+@CrossOrigin( origins = "http://localhost:3000")
 public class CustomerController {
 	
 	@Autowired
@@ -29,12 +32,12 @@ public class CustomerController {
 	
 	
 	
-	@PostMapping("/{cust_id}/bookCar")
-	public ResponseEntity<?> BookCab(@PathVariable Long cust_id,@RequestBody BookingDto booking)
+	@PostMapping("/bookCar")
+	public ResponseEntity<?> BookCab(@RequestBody BookingDto booking)
 	{
 		
 	try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.BookCab(cust_id,booking));
+			return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.BookCab(booking));
 	}
 	catch(RuntimeException e)
 	{
@@ -43,6 +46,16 @@ public class CustomerController {
 		
 		//return null;
 		
+	}
+	
+	@GetMapping("{id}")
+	public ResponseEntity<?> confirmBooking(@PathVariable Long id)
+	{
+		try {
+			return ResponseEntity.ok(bookingService.getDetails(id));
+		}catch(RuntimeException e){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse());
+		}
 	}
 
 
@@ -55,6 +68,25 @@ public class CustomerController {
 		}
 	}
 	
+	
+	@DeleteMapping("/softDelete/{bookid}")
+	public ResponseEntity<?> softDeleteBooking(@PathVariable Long bookid){
+		try {
+			return ResponseEntity.ok(bookingService.softDeleteBooking(bookid));
+		}catch(RuntimeException e){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse());
+		}
+	}
+	
+	
+	@DeleteMapping("/hardDelete/{bookid}")
+	public ResponseEntity<?> hardDeleteBooking(@PathVariable Long bookid){
+		try {
+			return ResponseEntity.ok(bookingService.hardDeleteBooking(bookid));
+		}catch(RuntimeException e){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse());
+		}
+	}
 	
 	
 	

@@ -27,7 +27,7 @@ public class LocationController {
 	private LocationService	 locationService;
 	
 	
-	@GetMapping("/source")
+	@GetMapping("/loc")
 	public ResponseEntity<?> getSources()
 	{
 		List<LocationSourceDto> loc=locationService.GetAllSources();
@@ -39,7 +39,7 @@ public class LocationController {
 		
 	}
 	
-	@GetMapping("/source")
+	@GetMapping("/Destination")
 	public ResponseEntity<?> getDestinations()
 	{
 		List<LocationDestinationDto> loc=locationService.GetAllDestinations();

@@ -25,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BookingRespDto {
 	
-	
+	private Long id;
 	private String source;
 	
 	

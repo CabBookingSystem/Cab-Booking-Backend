@@ -10,5 +10,5 @@ import lombok.Setter;
 public class LocationSourceDto {
 	
 	private String source;
-
+	private String destination;
 }
