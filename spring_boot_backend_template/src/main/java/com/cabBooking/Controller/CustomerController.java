@@ -3,6 +3,7 @@ package com.cabBooking.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,8 @@ import com.cabBooking.Service.UserService;
 
 @RestController
 @RequestMapping("/customer")
+@CrossOrigin(origins="http://localhost:3000")
+
 public class CustomerController {
 	
 	@Autowired
@@ -46,7 +49,7 @@ public class CustomerController {
 	}
 
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> softDeleteuser(@PathVariable Long id){
 		try {
 			return ResponseEntity.ok(userService.deleteUser(id));
