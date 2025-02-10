@@ -19,6 +19,8 @@ public interface LocationDao extends JpaRepository<Locations,Long>{
 
 	Locations findByDestination(String destination);
 
+
+
 	
 
 	

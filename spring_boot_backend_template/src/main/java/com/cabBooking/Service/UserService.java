@@ -10,6 +10,7 @@ import com.cabBooking.Dto.BookingDto;
 import com.cabBooking.Dto.PasswordDto;
 
 import com.cabBooking.Dto.SignInDto;
+import com.cabBooking.Dto.UserResDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.User;
 import com.cabBooking.Entities.UserRole;
@@ -21,7 +22,7 @@ public interface UserService {
 	
 	 Object signIn(SignInDto signin);
 
-	List<UserRespDto> GetAllUsers();
+	List<UserResDto> GetAllUsers();
 
 	ApiResponse deleteUser(Long id);
 

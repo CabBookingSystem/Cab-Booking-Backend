@@ -1,7 +1,5 @@
 package com.cabBooking.Dto;
 
-
-
 import java.time.LocalDate;
 import com.cabBooking.Entities.Address;
 import com.cabBooking.Entities.Category;
@@ -9,24 +7,30 @@ import com.cabBooking.Entities.Category;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 public class DriverRespDto {
 
+
 	private Long id;
+
 	private String firstName;
 	
 	private String lastName;
 	
+
 	private LocalDate dob;
 	
+
 	private int age;
 	
 	private String email;
 	
+
 	private String password;
 	
-	private int phoneNo; 
+	
 
 	private String address;
 	
@@ -36,5 +40,9 @@ public class DriverRespDto {
 	
 	private byte[] drivingLicence; 
 	
-}
 
+	private int phoneNo; 
+	
+	
+	private long carId;
+}

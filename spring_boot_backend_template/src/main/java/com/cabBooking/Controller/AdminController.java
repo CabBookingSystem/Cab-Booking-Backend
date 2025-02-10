@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cabBooking.Dto.DriverDto;
+import com.cabBooking.Dto.UserResDto;
 import com.cabBooking.Service.AdminService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.BookingRespDto;
 import com.cabBooking.Dto.CarReqDto;
 import com.cabBooking.Dto.CarRespDto;
-import com.cabBooking.Dto.UserRespDto;
+
 import com.cabBooking.Entities.Car;
 import com.cabBooking.Entities.Category;
 import com.cabBooking.Entities.Locations;
@@ -30,6 +31,7 @@ import com.cabBooking.Service.UserService;
 @RestController
 @RequestMapping("/Admin")
 @CrossOrigin( origins = "http://localhost:3000")
+
 public class AdminController {
 	@Autowired
 	private AdminService  adminService;
@@ -109,7 +111,7 @@ public class AdminController {
 	public ResponseEntity<?> DisplayCustomers()
 	{
 		
-		List<UserRespDto> users=userService.GetAllUsers();
+		List<UserResDto> users=userService.GetAllUsers();
 		if(users.isEmpty())
 		{
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

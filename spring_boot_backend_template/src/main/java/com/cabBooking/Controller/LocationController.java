@@ -2,7 +2,10 @@ package com.cabBooking.Controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cabBooking.Dto.LocationDestinationDto;
@@ -25,6 +28,7 @@ public class LocationController {
 	
 	@Autowired
 	private LocationService	 locationService;
+	
 	
 	
 	@GetMapping("/loc")
@@ -51,5 +55,21 @@ public class LocationController {
 		
 	}
 	
+//	@GetMapping("/SourceDestination")
+//	public ResponseEntity<?> getSourceanddestination()
+//	{
+//		return ResponseEntity.status(HttpStatus.OK).body(locationService.getLocation());
+//		
+//		
+//	}
+	
+	
+	
+	@PostMapping("/Distance")
+	public ResponseEntity<?> getDistance(@RequestBody LocationSourceDto locations){
+		
+		Double distance=locationService.getDistance(locations);
+		return ResponseEntity.ok().body(distance);
+	}
 
 }

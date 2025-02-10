@@ -11,6 +11,12 @@ public interface LocationService {
 
 	List<LocationDestinationDto> GetAllDestinations();
 
+	//Double getDistance(String source, String destination);
+
+	Double getDistance(LocationSourceDto locations);
+
+	//Object getLocation();
+
 	
 		
 }

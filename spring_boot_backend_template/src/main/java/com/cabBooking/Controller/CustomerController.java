@@ -14,14 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.BookingDto;
-import com.cabBooking.Entities.Booking;
-import com.cabBooking.Entities.Car;
 import com.cabBooking.Service.BookingService;
 import com.cabBooking.Service.UserService;
 
+//import com.cabBooking.Dto.ApiResponse;
+//import com.cabBooking.Dto.BookingDto;
+//import com.cabBooking.Entities.Booking;
+//import com.cabBooking.Entities.Car;
+//import com.cabBooking.Service.BookingService;
+//import com.cabBooking.Service.UserService;
+
+
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/customer")
-@CrossOrigin( origins = "http://localhost:3000")
 public class CustomerController {
 	
 	@Autowired
@@ -59,7 +65,7 @@ public class CustomerController {
 	}
 
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> softDeleteuser(@PathVariable Long id){
 		try {
 			return ResponseEntity.ok(userService.deleteUser(id));
