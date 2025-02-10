@@ -10,6 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DriverDto {
+
+	
 	private String firstName;
 	
 	private String lastName;

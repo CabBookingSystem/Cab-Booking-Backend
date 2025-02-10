@@ -13,6 +13,8 @@ import com.cabBooking.Daos.DriverDao;
 import com.cabBooking.Daos.UserDao;
 import com.cabBooking.Dto.AddressDto;
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.DriverDto;
+import com.cabBooking.Dto.DriverRespDto;
 import com.cabBooking.Dto.PasswordDto;
 import com.cabBooking.Dto.SignInDto;
 import com.cabBooking.Dto.UserResDto;
@@ -60,11 +62,15 @@ public  class UserServiceImplementation implements UserService {
 	    }
 
 	    // If not a user, try to authenticate as a driver
-	    Optional<Driver> driverOptional = driverDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
-	    if (driverOptional.isPresent()) {
+	    Driver driver = driverDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
+	    if (driver!=null) {
 	    	
+	    	
+	    	DriverRespDto driverRespDto=modelMapper.map(driver, DriverRespDto.class);
 	       // return new ApiResponse("success","Driver Login Successful");
-	    	return driverOptional;
+	    	
+	    	System.out.println(driverRespDto.getFirstName());
+	    	return driverRespDto;
 //	    	 response.put("status", "success");
 //	         response.put("message", "Driver Login Successful");
 //	         response.put("driver", driverOptional.get()); // Use .get() to extract the object

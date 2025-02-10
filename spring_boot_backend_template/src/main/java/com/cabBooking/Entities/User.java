@@ -43,7 +43,7 @@ public class User extends BaseEntity {
 	@Column(name = "phone_No",length = 10, nullable = false, unique = true)
 	private Long phoneNo; 
 	
-	private boolean status;
+	private boolean status=true;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30) 

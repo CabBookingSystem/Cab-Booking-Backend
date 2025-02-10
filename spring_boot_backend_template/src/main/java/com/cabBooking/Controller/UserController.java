@@ -25,7 +25,7 @@ import com.cabBooking.Entities.UserRole;
 import com.cabBooking.Service.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @CrossOrigin( origins = "http://localhost:3000")
 
 public class UserController {

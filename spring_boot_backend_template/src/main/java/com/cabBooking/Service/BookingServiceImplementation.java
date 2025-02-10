@@ -155,8 +155,12 @@ public class BookingServiceImplementation implements BookingService {
 	@Override
 	public ApiResponse hardDeleteBooking(Long bookingId) {
 		// TODO Auto-generated method stub
-		//Booking booking=bookingDao.findById(bookingId).orElseThrow(()->new ResourceNotFoundException("Invalid Id"));
+		Booking booking=bookingDao.findById(bookingId).orElseThrow(()->new ResourceNotFoundException("Invalid Id"));
+		booking.setUser(null);
+		booking.setCar(null);
+		booking.setDriver(null);
 		bookingDao.deleteById(bookingId);
+		
 		return new ApiResponse("success","Booking Canceled");
 	}
 
