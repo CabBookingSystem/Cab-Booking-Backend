@@ -16,12 +16,14 @@ import com.cabBooking.Daos.DriverDao;
 import com.cabBooking.Daos.UserDao;
 import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.BookingRespDto;
+import com.cabBooking.Dto.DriverRespDto;
 import com.cabBooking.Entities.Booking;
 import com.cabBooking.Entities.Category;
 import com.cabBooking.Entities.Driver;
 import com.cabBooking.Entities.Status;
 import com.cabBooking.Entities.User;
 import com.cabBooking.customexception.ResourceNotFoundException;
+import com.cabBooking.Dto.DriverRespDto;
 
 @Service
 @Transactional
@@ -84,7 +86,47 @@ public class DriverServiceImplementation implements DriverService{
 	    bookingDao.save(booking);
 	    return new ApiResponse("User request accepted successfully");
 	}
+
+	//@Override
+//	public List<DriverRespDto> GetAllDriver() {
+//		return driverDao.findAll().stream().map(driver -> modelMapper.map(driver, DriverRespDto.class)).collect(Collectors.toList());
+//		// TODO Auto-generated method stub
+//		//return driverDao.findAll().stream().map(driver->modelMapper.map(driver, driverRespDto.class)).collect(Collectors.toList());
+//        
+//	}
 	
+	@Override
+	public List<DriverRespDto> GetAllDriver() {
+	    List<Driver> drivers = driverDao.findAll();  // Fetch all drivers
+	    List<DriverRespDto> driverRespDtos = new ArrayList<>();
+
+	    for (Driver driver : drivers) {
+	        // Manually map the fields
+	        DriverRespDto driverRespDto = new DriverRespDto();
+	        
+	        // Map basic fields
+	        driverRespDto.setFirstName(driver.getFirstName());
+	        driverRespDto.setLastName(driver.getLastName());
+	        driverRespDto.setAge(driver.getAge());
+	        driverRespDto.setEmail(driver.getEmail());
+	        driverRespDto.setPhoneNo(driver.getPhoneNo());
+	        driverRespDto.setCategory(driver.getCategory());
+
+	        // Manually set carId from the associated Car entity
+	        if (driver.getCarId() != null) {
+	            driverRespDto.setCarId(driver.getCarId().getId());
+	        } else {
+	            driverRespDto.setCarId(0L);  // If no car, you can set a default value
+	        }
+
+	        // Add the mapped DTO to the list
+	        driverRespDtos.add(driverRespDto);
+	    }
+
+	    return driverRespDtos;
+	}
+
+//	
 //	
 //	@Override
 //	public List<BookingRespDto> GetCarType(Long driverId) {
