@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cabBooking.Daos.DriverDao;
 import com.cabBooking.Service.DriverService;
 
 @RestController
+@CrossOrigin(origins="http://localhost:3000")
 @RequestMapping("/Driver")
-@CrossOrigin( origins = "http://localhost:3000")
 
 public class DriverController {
 
@@ -24,12 +23,12 @@ public class DriverController {
 	
 	@GetMapping("/{driverId}")
 	public ResponseEntity<?> getReqByType(@PathVariable Long driverId){
-		return ResponseEntity.status(HttpStatus.OK).body(driverService.GetCarType(driverId));
+		return ResponseEntity.status(HttpStatus.FOUND).body(driverService.GetCarType(driverId));
 	}
 	
 	@PutMapping("/{driverId}/{bookingId}")
 	public ResponseEntity<?> acceptUserReq(@PathVariable Long bookingId,@PathVariable Long driverId){
-		return ResponseEntity.status(HttpStatus.OK).body(driverService.acceptUserRequest(bookingId,driverId));
+		return ResponseEntity.status(HttpStatus.FOUND).body(driverService.acceptUserRequest(bookingId,driverId));
 	}
 	
 }
