@@ -8,8 +8,14 @@ import com.cabBooking.Dto.BookingRespDto;
 
 public interface BookingService {
 	
-	ApiResponse BookCab(Long cust_id, BookingDto booking);
+	Object BookCab( BookingDto booking);
 
 	List<BookingRespDto> GetAllBookings();
+
+	ApiResponse softDeleteBooking(Long id);
+
+	ApiResponse hardDeleteBooking(Long bookid);
+
+	BookingRespDto getDetails(Long id);
 
 }

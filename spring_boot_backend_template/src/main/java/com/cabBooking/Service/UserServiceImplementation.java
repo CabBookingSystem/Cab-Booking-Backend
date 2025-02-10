@@ -1,6 +1,11 @@
 package com.cabBooking.Service;
 
+import java.util.ArrayList;
+
+import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
@@ -9,9 +14,11 @@ import org.springframework.stereotype.Service;
 
 import com.cabBooking.Daos.DriverDao;
 import com.cabBooking.Daos.UserDao;
+import com.cabBooking.Dto.AddressDto;
 import com.cabBooking.Dto.ApiResponse;
 import com.cabBooking.Dto.PasswordDto;
 import com.cabBooking.Dto.SignInDto;
+import com.cabBooking.Dto.UserResDto;
 import com.cabBooking.Dto.UserRespDto;
 import com.cabBooking.Entities.Driver;
 import com.cabBooking.Entities.User;
@@ -44,19 +51,27 @@ public  class UserServiceImplementation implements UserService {
 
 
 	@Override
-	public ApiResponse signIn(SignInDto dto) {
+	public  Object signIn(SignInDto dto) {
 
-		
+		Map<String, Object> response=new HashMap<>();
 		User user= userDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 	    if (user!=null) {
-	        return new ApiResponse("success","User Login Successful");
+	       // return new ApiResponse("success","User Login Successful");
+	    	return user;
+	    	
+	         //return response;
 	    }
 
 	    // If not a user, try to authenticate as a driver
 	    Optional<Driver> driverOptional = driverDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 	    if (driverOptional.isPresent()) {
 	    	
-	        return new ApiResponse("success","Driver Login Successful");
+	       // return new ApiResponse("success","Driver Login Successful");
+	    	return driverOptional;
+//	    	 response.put("status", "success");
+//	         response.put("message", "Driver Login Successful");
+//	         response.put("driver", driverOptional.get()); // Use .get() to extract the object
+//	         return response;
 	    }
 
 	    
@@ -68,23 +83,69 @@ public  class UserServiceImplementation implements UserService {
 	}
 
 
+//	@Override
+//	public List<UserResDto> GetAllUsers() {
+//		// TODO Auto-generated method stub
+//		List<UserResDto> userDto = new ArrayList<>();
+//		UserResDto user1;
+//		List<User>users=userDao.findAll();
+//		for (User u : users)
+//		{
+//			if(u.getRole()==UserRole.CUSTOMER)
+//			{
+//				user1=modelMapper.map(u, UserResDto.class);
+//				userDto.add(user1);
+//				//userDto.add(modelMapper.map(u, UserRespDto.class));
+//			}
+//		}
+//		return userDto;
+//		//return userDao.findAll().stream().map(user->modelMapper.map(user, UserRespDto.class)).collect(Collectors.toList());
+//	}
+	
+//	@Override
+//	public List<UserResDto> GetAllUsers() {
+//	    List<UserResDto> userDtoList = new ArrayList<>();
+//	    List<User> users = userDao.findAll();
+//
+//	    for (User u : users) {
+//	        if (u.getRole() == UserRole.CUSTOMER) {
+//	            UserResDto userDto = modelMapper.map(u, UserResDto.class);
+//
+//	            // Manually map the address if it exists
+//	            if (u.getUserAddress() != null) {
+//	                AddressDto addressDto = new AddressDto();
+//	                addressDto.setAdrLine1(u.getUserAddress().getAdrLine1());
+//	                addressDto.setAdrLine2(u.getUserAddress().getAdrLine2());
+//	                addressDto.setCity(u.getUserAddress().getCity());
+//	                addressDto.setState(u.getUserAddress().getState());
+//	                addressDto.setPinCode(u.getUserAddress().getPinCode());
+//
+//	                userDto.setAddress(addressDto);
+//	            }
+//
+//	            userDtoList.add(userDto);
+//	        }
+//	    }
+//
+//	    return userDtoList;
+//	}
+	
 	@Override
-	public List<UserRespDto> GetAllUsers() {
-		// TODO Auto-generated method stub
-		List<UserRespDto> userDto = null;
-		UserRespDto user1;
-		List<User>users=userDao.findAll();
-		for (User u : users)
-		{
-			if(u.getRole()==UserRole.CUSTOMER)
-			{
-				user1=modelMapper.map(u, UserRespDto.class);
-				userDto.add(user1);
-				//userDto.add(modelMapper.map(u, UserRespDto.class));
-			}
-		}
-		return userDto;
-		//return userDao.findAll().stream().map(user->modelMapper.map(user, UserRespDto.class)).collect(Collectors.toList());
+	public List<UserResDto> GetAllUsers() {
+	    return userDao.findAll().stream()
+	        .filter(user -> user.getRole() == UserRole.CUSTOMER)
+	        .map(user -> {
+	            UserResDto userDto = modelMapper.map(user, UserResDto.class);
+	            
+	            // Manually map address if it exists
+	            if (user.getUserAddress() != null) {
+	                AddressDto addressDto = modelMapper.map(user.getUserAddress(), AddressDto.class);
+	                userDto.setAddress(addressDto);
+	            }
+
+	            return userDto;
+	        })
+	        .collect(Collectors.toList());
 	}
 
 
