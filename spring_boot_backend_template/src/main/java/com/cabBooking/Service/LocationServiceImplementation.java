@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cabBooking.Daos.LocationDao;
 import com.cabBooking.Dto.LocationDestinationDto;
+import com.cabBooking.Dto.LocationRespDto;
 import com.cabBooking.Dto.LocationSourceDto;
 import com.cabBooking.Entities.Locations;
 
@@ -37,6 +38,23 @@ public class LocationServiceImplementation implements LocationService {
 		// TODO Auto-generated method stub
 		return locationDao.findAll().stream().map(location->mapper.map(location, LocationDestinationDto.class)).collect(Collectors.toList());
 	}
+
+	@Override
+	public Double getDistance(LocationSourceDto locations) {
+		
+		
+		String source=locations.getSource();
+		String destination=locations.getDestination();
+		Locations location = locationDao.findBySourceAndDestination(source,destination);
+		
+		return location.getDistance();
+	}
+
+//	@Override
+//	public Object getLocation() {
+//		
+//		return null;
+//	}
 	
 	
 	

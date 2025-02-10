@@ -1,10 +1,6 @@
 package com.cabBooking.Service;
-
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
 import java.util.HashMap;
->>>>>>> f5438305f3914aa7495e152c12fc26a6d39cfd2c
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
