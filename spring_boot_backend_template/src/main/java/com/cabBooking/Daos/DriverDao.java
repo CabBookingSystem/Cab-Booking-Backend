@@ -9,6 +9,6 @@ import com.cabBooking.Entities.User;
 
 public interface DriverDao extends JpaRepository<Driver,Long>{
 
-	Optional<Driver> findByEmailAndPassword(String email, String password);
+	Driver findByEmailAndPassword(String email, String password);
 
 }
