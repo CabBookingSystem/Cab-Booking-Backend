@@ -104,10 +104,11 @@ public class DriverServiceImplementation implements DriverService{
 	        // Manually map the fields
 	        DriverRespDto driverRespDto = new DriverRespDto();
 	        
-	        // Map basic fields
+	        driverRespDto.setId(driver.getId());  
 	        driverRespDto.setFirstName(driver.getFirstName());
 	        driverRespDto.setLastName(driver.getLastName());
 	        driverRespDto.setAge(driver.getAge());
+	        driverRespDto.setDob(driver.getDob());
 	        driverRespDto.setEmail(driver.getEmail());
 	        driverRespDto.setPhoneNo(driver.getPhoneNo());
 	        driverRespDto.setCategory(driver.getCategory());
