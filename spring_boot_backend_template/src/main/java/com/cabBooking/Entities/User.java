@@ -32,6 +32,8 @@ public class User extends BaseEntity {
 	@Column(name = "last_Name", length = 20)
 	private String lastName;
 	
+	
+	
 	private LocalDate dob;
 	
 	@Column(length = 25, unique = true)

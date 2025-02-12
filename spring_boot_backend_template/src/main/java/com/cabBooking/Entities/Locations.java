@@ -19,8 +19,7 @@ public class Locations extends BaseEntity {
 	@Column(name="source",length=50)
 	private String source;
 	
-	@Column(name="km")
-	private double km;
+	
 	
 	@Column(name="destination",length=50)
 	private String destination;

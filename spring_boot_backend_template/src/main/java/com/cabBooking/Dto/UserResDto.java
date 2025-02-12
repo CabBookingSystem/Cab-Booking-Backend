@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserResDto {
-	private Long Id;
+	private Long id;
 	private String firstName;
 
 	private String lastName;

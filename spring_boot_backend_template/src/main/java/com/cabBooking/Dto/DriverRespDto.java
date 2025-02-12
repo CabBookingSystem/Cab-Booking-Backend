@@ -44,5 +44,5 @@ public class DriverRespDto {
 	private int phoneNo; 
 	
 	
-	private long carId;
+	
 }

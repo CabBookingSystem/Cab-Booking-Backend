@@ -138,6 +138,8 @@ public  class UserServiceImplementation implements UserService {
 	    return userDao.findAll().stream()
 	        .filter(user -> user.getRole() == UserRole.CUSTOMER)
 	        .map(user -> {
+	        	
+	        	System.out.println("get customers");
 	            UserResDto userDto = modelMapper.map(user, UserResDto.class);
 	            
 	            // Manually map address if it exists

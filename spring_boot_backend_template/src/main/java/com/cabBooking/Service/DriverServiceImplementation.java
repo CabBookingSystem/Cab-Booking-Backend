@@ -12,12 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cabBooking.Daos.BookingDao;
+import com.cabBooking.Daos.BookingHistoryDao;
 import com.cabBooking.Daos.DriverDao;
 import com.cabBooking.Daos.UserDao;
 import com.cabBooking.Dto.ApiResponse;
+import com.cabBooking.Dto.BookingDetailsDto;
 import com.cabBooking.Dto.BookingRespDto;
 import com.cabBooking.Dto.DriverRespDto;
 import com.cabBooking.Entities.Booking;
+import com.cabBooking.Entities.BookingHistory;
 import com.cabBooking.Entities.Category;
 import com.cabBooking.Entities.Driver;
 import com.cabBooking.Entities.Status;
@@ -40,6 +43,10 @@ public class DriverServiceImplementation implements DriverService{
 	
 	@Autowired 
 	private UserDao userDao;
+	
+	
+	@Autowired 
+	private BookingHistoryDao bookHistoryDao;
 	
 	@Override
 	public List<BookingRespDto> GetCarType(Long driverId) {
@@ -72,21 +79,48 @@ public class DriverServiceImplementation implements DriverService{
 		
 	}
 
-	@Override
-	public ApiResponse acceptUserRequest(Long bookingId,Long driverId) {
-		Driver driver=driverDao.findById(driverId).orElseThrow(()->new ResourceNotFoundException("Id Not Found"));
-		
-		Booking booking=bookingDao.findById(bookingId).orElseThrow(()->new ResourceNotFoundException("Id Not Found"));
-		
-		driver.setBookingId(booking);
-		
-		booking.setDriver(driver);
-		booking.setStatus(Status.ASSIGNED);
-		
-	    bookingDao.save(booking);
-	    return new ApiResponse("User request accepted successfully");
-	}
+	
+	
+	
+//	@Override
+//	public BookingDetailsDto getCustBookingDetails(Long bookingId) {
+//		// TODO Auto-generated method stub
+//		Booking bookingDetails = bookingDao.findById(bookingId).orElseThrow(()-> new ResourceNotFoundException("Id is not valid"));
+//		
+//		User user=bookingDetails.getUser();
+//		System.out.println("user fname"+user.getFirstName());
+//		System.out.println("user lname "+user.getLastName());
+//		
+//		BookingDetailsDto bookingDto = modelMapper.map(bookingDetails, BookingDetailsDto.class);
+//		
+//		bookingDto.setFirstName(user.getFirstName());
+//		bookingDto.setLastName(user.getLastName());
+//		
+//		return bookingDto;
+//	}
 
+//	@Override
+//	public ApiResponse completeJourney(Long bookingId) {
+//		// TODO Auto-generated method stub
+//		
+//	    Booking booking = bookingDao.findById(bookingId)
+//	            .orElseThrow(() -> new ResourceNotFoundException("Booking ID not found"));
+//	    
+//	    booking.setStatus(Status.COMPLETED);
+//	    bookingDao.save(booking);
+//
+//	    BookingHistory bookingHistory = bookHistoryDao.findById(bookingId)
+//	            .orElseThrow(() -> new ResourceNotFoundException("Booking history not found"));
+//	   
+//	   // bookingHistory.setStatus(Status.COMPLETED);
+//	    bookHistoryDao.save(bookingHistory);
+//
+//	    return new ApiResponse("Journey completed successfully");
+//	}
+//	
+	
+	
+	
 	//@Override
 //	public List<DriverRespDto> GetAllDriver() {
 //		return driverDao.findAll().stream().map(driver -> modelMapper.map(driver, DriverRespDto.class)).collect(Collectors.toList());
@@ -114,11 +148,11 @@ public class DriverServiceImplementation implements DriverService{
 	        driverRespDto.setCategory(driver.getCategory());
 
 	        // Manually set carId from the associated Car entity
-	        if (driver.getCarId() != null) {
-	            driverRespDto.setCarId(driver.getCarId().getId());
-	        } else {
-	            driverRespDto.setCarId(0L);  // If no car, you can set a default value
-	        }
+//	        if (driver.getCarId() != null) {
+//	            driverRespDto.setCarId(driver.getCarId().getId());
+//	        } else {
+//	            driverRespDto.setCarId(0L);  // If no car, you can set a default value
+//	        }
 
 	        // Add the mapped DTO to the list
 	        driverRespDtos.add(driverRespDto);
@@ -127,6 +161,22 @@ public class DriverServiceImplementation implements DriverService{
 	    return driverRespDtos;
 	}
 
+	
+	
+	@Override
+	public ApiResponse acceptUserRequest(Long bookingId,Long driverId) {
+		Driver driver=driverDao.findById(driverId).orElseThrow(()->new ResourceNotFoundException("Id Not Found"));
+		
+		Booking booking=bookingDao.findById(bookingId).orElseThrow(()->new ResourceNotFoundException("Id Not Found"));
+		
+		driver.setBookingId(booking);
+		
+		booking.setDriver(driver);
+		booking.setStatus(Status.ASSIGNED);
+		
+	    bookingDao.save(booking);
+	    return new ApiResponse("User request accepted successfully");
+	}
 //	
 //	
 //	@Override
